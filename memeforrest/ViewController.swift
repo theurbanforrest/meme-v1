@@ -47,6 +47,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setMemeStyle(memeTopText)
         setMemeStyle(memeBottomText)
         
+        textFieldShouldReturn(memeTopText)
+        
         //Tab Bar
         
         //Keyboard
@@ -100,7 +102,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.defaultTextAttributes = memeTextAttributes
         textField.adjustsFontSizeToFitWidth = true
         textField.textAlignment = NSTextAlignment.Center
+        
+        //Set didBeginEditing + shouldReturn in this func
+            self.textFieldDidBeginEditing(textField)
+            self.textFieldShouldReturn(textField)
     }
+    
+            func textFieldDidBeginEditing(textField: UITextField) {
+                textField.clearsOnBeginEditing = true
+            }
+    
+            func textFieldShouldReturn(textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
+            }
     
     //Tab Bar
     
